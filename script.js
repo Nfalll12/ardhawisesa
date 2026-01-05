@@ -209,6 +209,58 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
 });
 
+/** ====== JADWAL MATKUL ====== **/
+
+const hariSelect = document.querySelector("#hariSelect");
+const jadwalBody = document.querySelector("#jadwalBody");
+
+/* DATA JADWAL (ISI SESUAI KELAS KAMU) */
+const jadwal = {
+  Senin: [
+    { jam: "07.00 - 08.40", matkul: "Matematika", info: "Ruang 201" },
+    { jam: "08.50 - 10.30", matkul: "Bahasa Indonesia", info: "Ruang 105" }
+  ],
+  Selasa: [
+    { jam: "07.00 - 08.40", matkul: "Sejarah", info: "Ruang 210" }
+  ],
+  Rabu: [],
+  Kamis: [],
+  Jumat: [],
+  Sabtu: []
+};
+
+/* FUNCTION RENDER JADWAL */
+function renderJadwal(hari) {
+  if (!jadwalBody) return;
+
+  jadwalBody.innerHTML = "";
+
+  const list = jadwal[hari];
+
+  if (!list || list.length === 0) {
+    jadwalBody.innerHTML =
+      `<tr><td colspan="3" class="muted">Tidak ada jadwal.</td></tr>`;
+    return;
+  }
+
+  list.forEach((item) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${item.jam}</td>
+      <td><b>${item.matkul}</b></td>
+      <td class="muted">${item.info}</td>
+    `;
+    jadwalBody.appendChild(tr);
+  });
+}
+
+/* EVENT GANTI HARI */
+if (hariSelect) {
+  hariSelect.addEventListener("change", () => {
+    renderJadwal(hariSelect.value);
+  });
+}
+
 /** ====== HELPERS ====== **/
 function escapeHtml(str) {
   return String(str)
@@ -225,3 +277,5 @@ renderPlaylist();
 renderGallery();
 loadSong(0);
 highlightPlaylist();
+
+if (hariSelect) renderJadwal(hariSelect.value);
