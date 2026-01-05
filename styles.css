@@ -271,3 +271,39 @@ p{ margin: 0; }
   .gallery{ grid-template-columns: repeat(2, 1fr); }
   .photo img{ height: 180px; }
 }
+/* ===== WARNA ROLE STRUKTUR KELAS ===== */
+
+.badge {
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Ketua */
+.role-ketua {
+  background: #e11d48; /* merah */
+  border-color: #e11d48;
+}
+
+/* Wakil */
+.role-wakil {
+  background: #f97316; /* orange */
+  border-color: #f97316;
+}
+
+/* Sekretaris */
+.role-sekretaris {
+  background: #2563eb; /* biru */
+  border-color: #2563eb;
+}
+
+/* Bendahara */
+.role-bendahara {
+  background: #16a34a; /* hijau */
+  border-color: #16a34a;
+}
+
+/* Anggota */
+.role-anggota {
+  background: #64748b; /* abu */
+  border-color: #64748b;
+}
