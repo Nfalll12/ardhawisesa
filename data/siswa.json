@@ -1,9 +1,11 @@
 [
-  { "nama": "Alya Putri", "role": "Ketua", "foto": "assets/img/siswa-1.jpg" },
-  { "nama": "Fajar Rizky", "role": "Wakil", "foto": "assets/img/siswa-2.jpg" },
-  { "nama": "Nadia Salsabila", "role": "Sekretaris", "foto": "assets/img/siswa-3.jpg" },
-  { "nama": "Rafi Alamsyah", "role": "Bendahara", "foto": "assets/img/siswa-4.jpg" },
+  { "nama": "Farjul Humam", "role": "Ketua", "foto": "assets/img/siswa-1.jpg" },
+  { "nama": "Arya Pungkas", "role": "Wakil", "foto": "assets/img/siswa-2.jpg" },
+  { "nama": "K. Koco Pinuji", "role": "Sekretaris", "foto": "assets/img/siswa-3.jpg" },
+  { "nama": "Fifi Nur", "role": "Sekretaris", "foto": "assets/img/siswa-4.jpg" },
+  { "nama": "Meisya Nawal", "role": "Bendahara", "foto": "assets/img/siswa-5.jpg" },
+  { "nama": "Syafira Putri", "role": "Bendahara", "foto": "assets/img/siswa-6.jpg" },
 
-  { "nama": "Dimas Pratama", "role": "Anggota", "foto": "assets/img/siswa-5.jpg" },
-  { "nama": "Siti Aisyah", "role": "Anggota", "foto": "assets/img/siswa-6.jpg" }
+  { "nama": "Faizal", "role": "Anggota", "foto": "assets/img/siswa-7.jpg" },
+  { "nama": "Fabian", "role": "Anggota", "foto": "assets/img/siswa-8.jpg" }
 ]
