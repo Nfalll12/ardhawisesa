@@ -209,56 +209,52 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
 });
 
-/** ====== JADWAL MATKUL ====== **/
-
 const hariSelect = document.querySelector("#hariSelect");
 const jadwalBody = document.querySelector("#jadwalBody");
 
-/* DATA JADWAL (ISI SESUAI KELAS KAMU) */
+/** ====== DATA JADWAL (ubah sesuai kelas kamu) ====== **/
 const jadwal = {
   Senin: [
-    { jam: "07.00 - 08.40", matkul: "Matematika", info: "Ruang 201" },
-    { jam: "08.50 - 10.30", matkul: "Bahasa Indonesia", info: "Ruang 105" }
+    { jam: "07:00 - 08:40", matkul: "Matkul A", info: "Ruang 201" },
+    { jam: "08:50 - 10:30", matkul: "Matkul B", info: "Ruang 105" }
   ],
   Selasa: [
-    { jam: "07.00 - 08.40", matkul: "Sejarah", info: "Ruang 210" }
+    { jam: "07:00 - 08:40", matkul: "Matkul C", info: "Lab 1" },
+    { jam: "08:50 - 10:30", matkul: "Matkul D", info: "Ruang 210" }
   ],
-  Rabu: [],
+  Rabu: [
+    { jam: "07:00 - 08:40", matkul: "Matkul E", info: "Ruang 103" }
+  ],
   Kamis: [],
-  Jumat: [],
+  Jumat: [
+    { jam: "07:00 - 08:00", matkul: "Kegiatan / Olahraga", info: "-" }
+  ],
   Sabtu: []
 };
 
-/* FUNCTION RENDER JADWAL */
 function renderJadwal(hari) {
   if (!jadwalBody) return;
-
   jadwalBody.innerHTML = "";
 
-  const list = jadwal[hari];
-
-  if (!list || list.length === 0) {
-    jadwalBody.innerHTML =
-      `<tr><td colspan="3" class="muted">Tidak ada jadwal.</td></tr>`;
+  const items = jadwal[hari] || [];
+  if (!items.length) {
+    jadwalBody.innerHTML = `<tr><td colspan="3" class="muted">Tidak ada jadwal.</td></tr>`;
     return;
   }
 
-  list.forEach((item) => {
+  items.forEach((it) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${item.jam}</td>
-      <td><b>${item.matkul}</b></td>
-      <td class="muted">${item.info}</td>
+      <td>${escapeHtml(it.jam)}</td>
+      <td><b>${escapeHtml(it.matkul)}</b></td>
+      <td class="muted">${escapeHtml(it.info)}</td>
     `;
     jadwalBody.appendChild(tr);
   });
 }
 
-/* EVENT GANTI HARI */
 if (hariSelect) {
-  hariSelect.addEventListener("change", () => {
-    renderJadwal(hariSelect.value);
-  });
+  hariSelect.addEventListener("change", () => renderJadwal(hariSelect.value));
 }
 
 /** ====== HELPERS ====== **/
