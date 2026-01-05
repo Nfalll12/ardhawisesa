@@ -65,7 +65,9 @@ function renderSiswa(list) {
       <img src="${s.foto}" alt="${escapeHtml(s.nama)}" onerror="this.src='assets/img/header.jpg'"/>
       <div>
         <div class="name">${escapeHtml(s.nama)}</div>
-        <div class="badge">${escapeHtml(s.role)}</div>
+        <div class="badge role-${s.role.toLowerCase()}">
+  ${escapeHtml(s.role)}
+</div>
       </div>
     `;
     strukturGrid.appendChild(el);
