@@ -273,8 +273,10 @@ renderPlaylist();
 renderGallery();
 loadSong(0);
 highlightPlaylist();
+
+if (hariSelect) {
+  renderJadwal(hariSelect.value); // otomatis tampil hari pertama (Senin)
+}
+
+/* 🔥 AYAT HARIAN LANGSUNG LOAD */
 loadAyahByNumber(dailyAyahNumber());
-
-if (hariSelect) renderJadwal(hariSelect.value);
-
-
