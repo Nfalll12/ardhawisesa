@@ -87,34 +87,26 @@
   </div>
 </section>
 
-    <!-- MUSIK -->
-    <section class="card" id="musik">
-      <div class="section-title">
-        <h2>Lagu Kelas</h2>
-        <p class="muted">Playlist favorit + pemutar audio (file MP3 lokal).</p>
-      </div>
+   <!-- AYAT / HADITS HARIAN -->
+<section class="card" id="harian">
+  <div class="section-title">
+    <h2>Ayat Harian</h2>
+    <p class="muted">Otomatis berganti setiap hari.</p>
+  </div>
 
-      <div class="player">
-        <div class="player-left">
-          <div class="cover" id="cover">🎵</div>
-          <div>
-            <div class="track-title" id="trackTitle">Pilih lagu</div>
-            <div class="muted" id="trackArtist">—</div>
-          </div>
-        </div>
+  <div class="toolbar">
+    <button class="btn" id="refreshHarian" type="button">Ganti (acak)</button>
+    <button class="btn" id="copyHarian" type="button">Salin</button>
+  </div>
 
-        <div class="player-right">
-          <button class="btn" id="prevBtn" type="button">⟵</button>
-          <button class="btn" id="playBtn" type="button">Play</button>
-          <button class="btn" id="nextBtn" type="button">⟶</button>
-        </div>
-      </div>
+  <div class="quote-box">
+    <div class="muted small" id="harianRef">Memuat...</div>
+    <div class="arab" id="harianArab">—</div>
+    <div class="muted" id="harianTerjemah">—</div>
+  </div>
 
-      <audio id="audio" preload="metadata"></audio>
-
-      <div id="playlist" class="list"></div>
-      <p class="muted small">Tip: kalau mau pakai Spotify/YouTube, lebih aman pakai link/embeds, bukan upload lagu.</p>
-    </section>
+  <p class="muted small">Sumber: AlQuran Cloud API</p>
+</section>
 
     <!-- GALERI -->
     <section class="card" id="galeri">
