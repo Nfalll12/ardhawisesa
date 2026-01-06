@@ -21,22 +21,6 @@ const modalClose = $("#modalClose");
 
 $("#year").textContent = new Date().getFullYear();
 
-/** ====== DATA LAGU (ubah sesuai kebutuhan) ====== **/
-const songs = [
-  {
-    title: "Lagu Kelas 1",
-    artist: "Nama Artis",
-    file: "assets/music/lagu-1.mp3"
-  },
-  {
-    title: "Lagu Kelas 2",
-    artist: "Nama Artis",
-    file: "assets/music/lagu-2.mp3"
-  }
-];
-
-let currentSongIndex = 0;
-let isPlaying = false;
 
 /** ====== DATA GALERI (ubah sesuai foto kamu) ====== **/
 const gallery = [
@@ -98,82 +82,6 @@ async function loadSiswa() {
 searchInput.addEventListener("input", applyFilter);
 filterRole.addEventListener("change", applyFilter);
 
-/** ====== PLAYLIST ====== **/
-function renderPlaylist() {
-  playlistEl.innerHTML = "";
-  songs.forEach((s, i) => {
-    const row = document.createElement("div");
-    row.className = "song";
-    row.innerHTML = `
-      <div class="meta">
-        <div><b>${escapeHtml(s.title)}</b></div>
-        <div class="muted small">${escapeHtml(s.artist)}</div>
-      </div>
-      <div class="muted small">${i === currentSongIndex ? "Dipilih" : "Klik"}</div>
-    `;
-    row.addEventListener("click", () => {
-      loadSong(i);
-      play();
-      highlightPlaylist();
-    });
-    playlistEl.appendChild(row);
-  });
-}
-
-function highlightPlaylist() {
-  [...playlistEl.children].forEach((child, idx) => {
-    child.style.background = idx === currentSongIndex ? "rgba(255,255,255,.08)" : "rgba(255,255,255,.03)";
-  });
-}
-
-function loadSong(index) {
-  currentSongIndex = (index + songs.length) % songs.length;
-  const s = songs[currentSongIndex];
-  audio.src = s.file;
-  trackTitle.textContent = s.title;
-  trackArtist.textContent = s.artist;
-  playBtn.textContent = "Play";
-  isPlaying = false;
-}
-
-function play() {
-  if (!audio.src) loadSong(currentSongIndex);
-  audio.play().then(() => {
-    isPlaying = true;
-    playBtn.textContent = "Pause";
-  }).catch(() => {
-    // biasanya diblok browser kalau belum ada interaksi user
-  });
-}
-
-function pause() {
-  audio.pause();
-  isPlaying = false;
-  playBtn.textContent = "Play";
-}
-
-playBtn.addEventListener("click", () => {
-  if (isPlaying) pause();
-  else play();
-});
-
-prevBtn.addEventListener("click", () => {
-  loadSong(currentSongIndex - 1);
-  play();
-  highlightPlaylist();
-});
-
-nextBtn.addEventListener("click", () => {
-  loadSong(currentSongIndex + 1);
-  play();
-  highlightPlaylist();
-});
-
-audio.addEventListener("ended", () => {
-  loadSong(currentSongIndex + 1);
-  play();
-  highlightPlaylist();
-});
 
 /** ====== GALERI + MODAL ====== **/
 function renderGallery() {
