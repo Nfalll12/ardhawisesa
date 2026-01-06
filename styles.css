@@ -333,3 +333,17 @@ p{ margin: 0; }
 .table tr:hover td{
   background: rgba(255,255,255,.03);
 }
+
+/* ===== Optimasi HP ===== */
+@media (max-width: 768px) {
+  .card { backdrop-filter: none; }
+}
+
+@media (max-width: 768px) {
+  body {
+    background: var(--bg); /* matikan gradient berat */
+  }
+  .card {
+    box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  }
+}
