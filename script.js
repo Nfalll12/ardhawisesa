@@ -273,7 +273,8 @@ renderPlaylist();
 renderGallery();
 loadSong(0);
 highlightPlaylist();
+loadAyahByNumber(dailyAyahNumber());
 
 if (hariSelect) renderJadwal(hariSelect.value);
-loadAyahByNumber(dailyAyahNumber());
+
 
