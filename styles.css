@@ -347,3 +347,18 @@ p{ margin: 0; }
     box-shadow: 0 6px 16px rgba(0,0,0,.25);
   }
 }
+
+/* Ayat Harian */
+.quote-box{
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  border-radius: 14px;
+  padding: 12px;
+}
+.arab{
+  font-size: 22px;
+  line-height: 1.9;
+  margin: 8px 0;
+  direction: rtl;
+}
+
