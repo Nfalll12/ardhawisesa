@@ -255,6 +255,100 @@ if (hariSelect) {
   hariSelect.addEventListener("change", () => renderJadwal(hariSelect.value));
 }
 
+/** ====== AYAT HARIAN (API) ====== **/
+const harianArab = document.querySelector("#harianArab");
+const harianTerjemah = document.querySelector("#harianTerjemah");
+const harianRef = document.querySelector("#harianRef");
+const refreshHarian = document.querySelector("#refreshHarian");
+const copyHarian = document.querySelector("#copyHarian");
+
+const TOTAL_AYAT = 6236; // jumlah ayat Al-Qur'an (umum dipakai)
+
+function todayKey() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+// bikin angka stabil per hari (1..6236)
+function dailyAyahNumber() {
+  const key = todayKey();
+  let hash = 0;
+  for (let i = 0; i < key.length; i++) hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
+  return (hash % TOTAL_AYAT) + 1;
+}
+
+// ambil salah satu edition terjemah Indonesia dari API (tanpa nebak kode)
+async function getIndonesianEditionId() {
+  const cacheKey = "idEdition";
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) return cached;
+
+  // daftar edition bahasa Indonesia
+  const res = await fetch("https://api.alquran.cloud/v1/edition/language/id");
+  const json = await res.json();
+
+  // pilih yang format text + type translation kalau ada
+  const pick =
+    (json.data || []).find(e => e.format === "text" && e.type === "translation") ||
+    (json.data || [])[0];
+
+  const id = pick?.identifier || "en.pickthall"; // fallback
+  localStorage.setItem(cacheKey, id);
+  return id;
+}
+
+async function loadAyahByNumber(n) {
+  if (!harianArab || !harianTerjemah || !harianRef) return;
+
+  harianRef.textContent = "Memuat...";
+  harianArab.textContent = "—";
+  harianTerjemah.textContent = "—";
+
+  try {
+    const idEdition = await getIndonesianEditionId();
+
+    // ambil arab (quran-uthmani) + terjemah (idEdition) sekaligus
+    const url = `https://api.alquran.cloud/v1/ayah/${n}/editions/quran-uthmani,${idEdition}`;
+    const res = await fetch(url);
+    const json = await res.json();
+
+    const arab = json.data?.[0];
+    const tr = json.data?.[1];
+
+    const surahName = arab?.surah?.englishName || arab?.surah?.name || "Surah";
+    const ayahNo = arab?.numberInSurah ?? "";
+
+    harianRef.textContent = `${surahName} : ${ayahNo}`;
+    harianArab.textContent = arab?.text || "(gagal memuat teks arab)";
+    harianTerjemah.textContent = tr?.text || "(gagal memuat terjemah)";
+  } catch (err) {
+    harianRef.textContent = "Gagal memuat ayat. Coba refresh.";
+    harianTerjemah.textContent = "";
+  }
+}
+
+function randomAyahNumber() {
+  return Math.floor(Math.random() * TOTAL_AYAT) + 1;
+}
+
+if (refreshHarian) {
+  refreshHarian.addEventListener("click", () => loadAyahByNumber(randomAyahNumber()));
+}
+
+if (copyHarian) {
+  copyHarian.addEventListener("click", async () => {
+    const text = `${harianRef.textContent}\n${harianArab.textContent}\n${harianTerjemah.textContent}`;
+    try {
+      await navigator.clipboard.writeText(text);
+      copyHarian.textContent = "Tersalin ✓";
+      setTimeout(() => (copyHarian.textContent = "Salin"), 1200);
+    } catch {}
+  });
+}
+
 /** ====== HELPERS ====== **/
 function escapeHtml(str) {
   return String(str)
@@ -273,3 +367,5 @@ loadSong(0);
 highlightPlaylist();
 
 if (hariSelect) renderJadwal(hariSelect.value);
+loadAyahByNumber(dailyAyahNumber());
+
