@@ -268,15 +268,20 @@ function escapeHtml(str) {
 }
 
 /** ====== INIT ====== **/
-loadSiswa();
-renderPlaylist();
-renderGallery();
-loadSong(0);
-highlightPlaylist();
+document.addEventListener("DOMContentLoaded", () => {
+  // Struktur
+  loadSiswa();
 
-if (hariSelect) {
-  renderJadwal(hariSelect.value); // otomatis tampil hari pertama (Senin)
-}
+  // Galeri
+  renderGallery();
 
-/* 🔥 AYAT HARIAN LANGSUNG LOAD */
-loadAyahByNumber(dailyAyahNumber());
+  // Jadwal (langsung tampil)
+  const hariSelect = document.querySelector("#hariSelect");
+  if (hariSelect) renderJadwal(hariSelect.value);
+
+  // Ayat (langsung tampil)
+  if (typeof loadAyahByNumber === "function" && typeof dailyAyahNumber === "function") {
+    loadAyahByNumber(dailyAyahNumber());
+  }
+});
+
