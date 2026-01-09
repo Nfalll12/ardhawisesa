@@ -24,12 +24,12 @@ $("#year").textContent = new Date().getFullYear();
 
 /** ====== DATA GALERI (ubah sesuai foto kamu) ====== **/
 const gallery = [
-  { src: "assets/img/siswa-1.jpg", caption: "Momen 1" },
-  { src: "assets/img/siswa-2.jpg", caption: "Momen 2" },
-  { src: "assets/img/siswa-3.jpg", caption: "Momen 3" },
-  { src: "assets/img/siswa-4.jpg", caption: "Momen 4" },
-  { src: "assets/img/siswa-5.jpg", caption: "Momen 5" },
-  { src: "assets/img/siswa-6.jpg", caption: "Momen 6" }
+  { src: "assets/img/momen-1.jpg", caption: "Momen 1" },
+  { src: "assets/img/momen-2.jpg", caption: "Momen 2" },
+  { src: "assets/img/momen-3.jpg", caption: "Momen 3" },
+  { src: "assets/img/momen-4.jpg", caption: "Momen 4" },
+  { src: "assets/img/momen-5.jpg", caption: "Momen 5" },
+  { src: "assets/img/momen-6.jpg", caption: "Momen 6" }
 ];
 
 /** ====== STRUKTUR KELAS ====== **/
