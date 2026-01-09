@@ -121,21 +121,27 @@ const jadwalBody = document.querySelector("#jadwalBody");
 /** ====== DATA JADWAL (ubah sesuai kelas kamu) ====== **/
 const jadwal = {
   Senin: [
-    { jam: "07:00 - 08:40", matkul: "Matkul A", info: "Ruang 201" },
-    { jam: "08:50 - 10:30", matkul: "Matkul B", info: "Ruang 105" }
+    { jam: "08:00 - 09:40", matkul: "B. Arab Dasar", info: "Ruang B1" },
+    { jam: "09:40 - 11:30", matkul: "B. Indo Dasar", info: "Ruang B1" },
+    { jam: "12:30 - 14:10", matkul: "PPKn", info: "Ruang B1" }
   ],
   Selasa: [
-    { jam: "07:00 - 08:40", matkul: "Matkul C", info: "Lab 1" },
-    { jam: "08:50 - 10:30", matkul: "Matkul D", info: "Ruang 210" }
+    { jam: "08:00 - 09:40", matkul: "TPI", info: "Ruang B6" },
+    { jam: "09:40 - 11:30", matkul: "Tasawuf", info: "Ruang B6" },
+    { jam: "12:30 - 14:10", matkul: "B. Inggris", info: "Ruang B6" }
   ],
   Rabu: [
-    { jam: "07:00 - 08:40", matkul: "Matkul E", info: "Ruang 103" }
+    { jam: "08:00 - 09:40", matkul: "Islam Nusantara", info: "Ruang B5" },
+    { jam: "09:40 - 11:30", matkul: "Kajian Ilmu Tarbiya & Keguruan", info: "Ruang B5" },
+    { jam: "12:30 - 14:10", matkul: "Ushul Fiqh", info: "Ruang B5" }
   ],
   Kamis: [],
-  Jumat: [
-    { jam: "07:00 - 08:00", matkul: "Kegiatan / Olahraga", info: "-" }
-  ],
-  Sabtu: []
+  Jumat: [],
+  Sabtu: [
+    { jam: "08:00 - 09:40", matkul: "Filsafat Pendidikan Islam", info: "Ruang B4" },
+    { jam: "09:40 - 11:30", matkul: "Falsafah", info: "Ruang B4" },
+    { jam: "12:30 - 14:10", matkul: "Tahsinul Qur'an", info: "Ruang B4" }
+  ]
 };
 
 function renderJadwal(hari) {
